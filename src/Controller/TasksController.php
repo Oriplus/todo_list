@@ -44,9 +44,8 @@ class TasksController extends AppController
         $data['status_id'] = 1;
         $task = $this->Tasks->newEntity();
         $task = $this->Tasks->patchEntity($task, $data, [
-            'validate' => true,
+            'validate' => 'add',
             'fields' => ['description', 'status_id'],
-            'context' => ['method' => 'add']
         ]);
         $result = $this->Tasks->save($task);
         if ($result !== false) {
@@ -79,9 +78,8 @@ class TasksController extends AppController
     {
         $task = $this->Tasks->get($id);
         $task = $this->Tasks->patchEntity($task, $this->request->getData(), [
-            'validate' => true,
+            'validate' => 'edit',
             'fields' => ['description'],
-            'context' => ['method' => 'edit']
         ]);
         $result = $this->Tasks->save($task);
         if ($result !== false) {
@@ -116,10 +114,7 @@ class TasksController extends AppController
         $result = $this->Tasks->delete($task);
         if ($result !== false) {
             return $this->setJsonResponse(
-                [
-                    'status' => 'success',
-                    'message' => 'The task has been deleted.',
-                ],
+                [],
                 204
             );
         }
@@ -136,9 +131,8 @@ class TasksController extends AppController
     {
         $task = $this->Tasks->get($id);
         $task = $this->Tasks->patchEntity($task, $this->request->getData(), [
-            'validate' => true,
+            'validate' => 'updateStatus',
             'fields' => ['status_id'],
-            'context' => ['method' => 'updateStatus']
         ]);
         $result = $this->Tasks->save($task);
         if ($result !== false) {

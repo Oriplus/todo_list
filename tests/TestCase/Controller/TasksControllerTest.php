@@ -152,7 +152,6 @@ class TasksControllerTest extends TestCase
     {
         $this->delete("{$this->baseUrl}/1");
         $this->assertResponseCode(204);
-        $this->assertResponseContains('The task has been deleted.');
     }
 
     /**

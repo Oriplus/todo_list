@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Model\Table;
 
 use Cake\ORM\Query;
@@ -58,10 +59,77 @@ class TasksTable extends Table
             ->integer('id')
             ->allowEmptyString('id', null, 'create');
 
+        return $validator;
+    }
+
+    /**
+     * Description validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationDescription(Validator $validator)
+    {
         $validator
             ->scalar('description')
             ->requirePresence('description')
             ->notEmptyString('description');
+
+        return $validator;
+    }
+
+    /**
+     * Status validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationStatus(Validator $validator)
+    {
+        $validator
+            ->integer('status_id')
+            ->requirePresence('status_id')
+            ->notEmptyString('status_id');
+
+        return $validator;
+    }
+
+    /**
+     * Add method validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationAdd(Validator $validator)
+    {
+        $this->validationDescription($validator);
+        $this->validationStatus($validator);
+
+        return $validator;
+    }
+
+    /**
+     * update status method validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationUpdateStatus(Validator $validator)
+    {
+        $this->validationStatus($validator);
+
+        return $validator;
+    }
+
+    /**
+     * edit method validation rules.
+     *
+     * @param \Cake\Validation\Validator $validator Validator instance.
+     * @return \Cake\Validation\Validator
+     */
+    public function validationEdit(Validator $validator)
+    {
+        $this->validationDescription($validator);
 
         return $validator;
     }

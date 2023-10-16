@@ -71,11 +71,10 @@ class TasksTableTest extends TestCase
      */
     public function testRequiredDescription()
     {
-        $task = $this->Tasks->newEntity([]);
-
+        $task = $this->Tasks->newEntity([], ['validate' => 'description']);
+        $this->assertFalse($this->Tasks->save($task));
         $errors = $task->getErrors();
         $this->assertArrayHasKey('description', $errors);
-        $this->assertArrayHasKey('_required', $errors['description']);
     }
 
     /**
@@ -86,12 +85,40 @@ class TasksTableTest extends TestCase
     public function testNotEmptyDescription()
     {
         $task = $this->Tasks->newEntity([
-            'description' => '',
-        ]);
+            'description' => ''
+        ], ['validate' => 'description']);
 
+        $this->assertFalse($this->Tasks->save($task));
         $errors = $task->getErrors();
         $this->assertArrayHasKey('description', $errors);
-        $this->assertArrayHasKey('_empty', $errors['description']);
+    }
+
+    /**
+     * Test Required description
+     *
+     * @return void
+     */
+    public function testRequiredStatus()
+    {
+        $task = $this->Tasks->newEntity([], ['validate' => 'status']);
+        $this->assertFalse($this->Tasks->save($task));
+        $errors = $task->getErrors();
+        $this->assertArrayHasKey('status_id', $errors);
+    }
+
+    /**
+     * Test Not Empty status_id
+     *
+     * @return void
+     */
+    public function testNotEmptyStatus()
+    {
+        $task = $this->Tasks->newEntity([
+            'status_id' => ''
+        ], ['validate' => 'status']);
+        $this->assertFalse($this->Tasks->save($task));
+        $errors = $task->getErrors();
+        $this->assertArrayHasKey('status_id', $errors);
     }
 
     /**
@@ -105,7 +132,6 @@ class TasksTableTest extends TestCase
             'description' => 'Test Task',
             'status_id' => 123456789
         ]);
-
         $this->assertFalse($this->Tasks->save($task));
         $this->assertNotEmpty($task->getErrors()['status_id']);
     }

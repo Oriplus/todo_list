@@ -32,4 +32,9 @@ class Task extends Entity
         'modified' => true,
         'status' => true,
     ];
+
+    protected $_hidden = [
+        'created',
+        'modified'
+    ];
 }

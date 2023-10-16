@@ -30,4 +30,10 @@ class Status extends Entity
         'modified' => true,
         'tasks' => true,
     ];
+
+    protected $_hidden = [
+        'created',
+        'modified'
+    ];
+
 }

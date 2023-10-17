@@ -19,7 +19,7 @@ class CreateTasks extends AbstractMigration
         ]);
         $table->addColumn('status_id', 'integer', [
             'default' => null,
-            'null' => false,
+            'null' => true,
         ]);
         $table->addColumn('created', 'datetime', [
             'default' => null,

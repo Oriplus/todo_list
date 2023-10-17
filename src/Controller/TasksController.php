@@ -20,10 +20,13 @@ class TasksController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Statuses'],
-        ];
-        $tasks = $this->paginate($this->Tasks);
+        $tasks = $this->Tasks
+            ->find('all', [
+                'contain' => ['Statuses'],
+                'order' => ['status_id' => 'ASC']
+            ])
+            ->all();
+
         return $this->setJsonResponse(
             [
                 'data' => $tasks,

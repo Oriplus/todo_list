@@ -29,7 +29,18 @@ class TasksControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $this->baseUrl = '/api/tasks/';
+        $this->baseUrl = '/api/tasks';
+    }
+
+    /**
+     * tearDown method
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        unset($this->baseUrl);
+        parent::tearDown();
     }
 
     /**
@@ -97,7 +108,7 @@ class TasksControllerTest extends TestCase
             'description' => 'Update a Task Description'
         ];
         $taskId = $task->id;
-        $this->put("/api/tasks/{$taskId}", $updateData);
+        $this->put("{$this->baseUrl}/{$taskId}", $updateData);
         $this->assertResponseCode(200);
         $this->assertResponseContains('The task has been updated.');
         $updatedTask = $tasks->get($taskId);
@@ -122,11 +133,27 @@ class TasksControllerTest extends TestCase
             'description' => ''
         ];
         $taskId = $task->id;
-        $this->put("/api/tasks/{$taskId}", $updateData);
+        $this->put("{$this->baseUrl}/{$taskId}", $updateData);
         $this->assertResponseCode(422);
         $this->assertResponseContains('The task could not be updated. Please, try again.');
         $updatedTask = $tasks->get($taskId);
         $this->assertEquals($data['description'], $updatedTask->description);
+    }
+
+    /**
+     * Test edit task with status complete method should fail
+     *
+     * @return void
+     */
+    public function testEditCompletedTaskShoulFail()
+    {
+        $updateData = [
+            'description' => 'Editing completed task'
+        ];
+        $this->put("{$this->baseUrl}/2", $updateData);
+        $this->assertResponseCode(422);
+        $this->assertResponseContains('Completed Tasks cannot be edited.');
+
     }
 
     /**
@@ -139,7 +166,7 @@ class TasksControllerTest extends TestCase
         $updateData = [
             'description' => ''
         ];
-        $this->put("/api/tasks/848484", $updateData);
+        $this->put("{$this->baseUrl}/848484", $updateData);
         $this->assertResponseCode(404);
     }
 
@@ -173,7 +200,7 @@ class TasksControllerTest extends TestCase
     public function testUpdateStatusShouldSuccess()
     {
         $data = [
-            'status_id' => 1
+            'status_id' => 2
         ];
         $this->patch("{$this->baseUrl}/1/status", $data);
         $this->assertResponseCode(200);

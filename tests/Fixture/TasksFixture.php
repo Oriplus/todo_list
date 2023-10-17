@@ -44,6 +44,13 @@ class TasksFixture extends TestFixture
                 'created' => '2023-10-14 18:03:18',
                 'modified' => '2023-10-14 18:03:18',
             ],
+            [
+                'id' => 2,
+                'description' => 'Lorem ipsum dolor sit amet, aliquet feugiat. Convallis morbi fringilla gravida, phasellus feugiat dapibus velit nunc, pulvinar eget sollicitudin venenatis cum nullam, vivamus ut a sed, mollitia lectus. Nulla vestibulum massa neque ut et, id hendrerit sit, feugiat in taciti enim proin nibh, tempor dignissim, rhoncus duis vestibulum nunc mattis convallis.',
+                'status_id' => 2,
+                'created' => '2023-10-14 18:03:18',
+                'modified' => '2023-10-14 18:03:18',
+            ],
         ];
         parent::init();
     }

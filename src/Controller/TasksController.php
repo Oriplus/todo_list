@@ -26,7 +26,6 @@ class TasksController extends AppController
                 'order' => ['status_id' => 'ASC']
             ])
             ->all();
-
         return $this->setJsonResponse(
             [
                 'data' => $tasks,
@@ -80,6 +79,14 @@ class TasksController extends AppController
     public function edit($id)
     {
         $task = $this->Tasks->get($id);
+        if ($task->status_id == 2) {
+            return $this->setJsonResponse(
+                [
+                    'message' => 'Completed Tasks cannot be edited.',
+                ],
+                422
+            );
+        }
         $task = $this->Tasks->patchEntity($task, $this->request->getData(), [
             'validate' => 'edit',
             'fields' => ['description'],
@@ -148,7 +155,6 @@ class TasksController extends AppController
                 200
             );
         }
-
         return $this->setJsonResponse(
             [
                 'errors' => $task->getErrors(),

@@ -25,7 +25,7 @@ class StatusesSeed extends AbstractSeed
                 'modified' => date('Y-m-d H:i:s'),
             ],
             [
-                'name' => 'complete',
+                'name' => 'completed',
                 'created' => date('Y-m-d H:i:s'),
                 'modified' => date('Y-m-d H:i:s'),
             ],

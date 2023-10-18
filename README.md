@@ -17,22 +17,23 @@ Componentes Vue se encuentran en /src
 Crear el archivo /config/.env con los mismos datos de /config/.env.example
 
 
-## Usando configuracion local con xampp:
+### Usando configuración local con xampp:
 * Usar xampp con php 7.4 y MySQL 5.7
 * Vue 2
 * Composer
 * Node v 18.x
 
-## Con docker localmente
-
+<details>
+  <summary>Con docker localmente</summary>
  En la raiz de proyecto ejecutar
+    
 ```
  docker-compose build
 ```
 ```
  docker-compose up  -d
 ```
-
+</details>
 
 Instalamos dependencias
 (si se esta usando Docker ejecutar primero `docker-compose exec web bash`)

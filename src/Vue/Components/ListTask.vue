@@ -8,11 +8,11 @@
           :for="`check-${taskItem.id}`">
           {{ taskItem.description }}
         </label>
-        <button v-if="!status.completed" type="button" class="btn btn-outline-primary btn-sm rounded-circle me-2"
+        <button v-if="!status.completed" type="button" class="btn btn-outline-primary btn-sm rounded-circle me-2 mb-0"
           @click="startEditing">
           <i class="bi bi-pencil"></i>
         </button>
-        <button type="button" class="btn btn-outline-danger btn-sm rounded-circle" @click="deleteTask"><i
+        <button type="button" class="btn btn-outline-danger btn-sm rounded-circle mb-0" @click="deleteTask"><i
             class="bi bi-trash"></i></button>
       </div>
       <div v-else class="d-flex justify-content-between align-items-start py-2 edit-container">

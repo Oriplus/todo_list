@@ -24,7 +24,7 @@ Crear el archivo /config/.env con los mismos datos de /config/.env.example
 * Node v 18.x
 
 <details>
-  <summary>Con docker localmente</summary>
+  <summary>Con docker localmente(opcional)</summary>
  En la raiz de proyecto ejecutar
     
 ```

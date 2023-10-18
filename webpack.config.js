@@ -14,6 +14,13 @@ module.exports = {
                 loader: "vue-loader",
             },
             {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader'
+                }
+            },
+            {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"],
             },
@@ -22,6 +29,7 @@ module.exports = {
     resolve: {
         alias: {
             vue$: "vue/dist/vue.esm.js",
+            '@': path.resolve(__dirname, 'src/')
         },
     },
     devtool: "inline-source-map",

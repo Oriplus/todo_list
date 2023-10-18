@@ -6,15 +6,24 @@ Agrega, edita, elimina y cambia de estatus tareas!
 
 ![image](https://github.com/Oriplus/todo_list/assets/42686893/931515a2-26d7-4b7f-8c79-62767dc6d906)
 
+Componentes Vue se encuentran en /src
 
+[Database dump](https://github.com/Oriplus/todo_list/blob/master/database.sql)
 
 ## Como ejecutar el proyecto
-
-## Usando configuración local de docker del proyecto:
 
 #### NOTA: por simplicidad se puede copiar el mismo .env.example, pero las credenciales .env deberian ser privadas .
 
 Crear el archivo /config/.env con los mismos datos de /config/.env.example
+
+
+## Usando configuracion local con xampp:
+* Usar xampp con php 7.4 y MySQL 5.7
+* Vue 2
+* Composer
+* Node v 18.x
+
+## Con docker localmente
 
  En la raiz de proyecto ejecutar
 ```
@@ -24,12 +33,11 @@ Crear el archivo /config/.env con los mismos datos de /config/.env.example
  docker-compose up  -d
 ```
 
-```
- docker-compose exec web bash
-```
+
 Instalamos dependencias
+(si se esta usando Docker ejecutar primero `docker-compose exec web bash`)
 ```
- composer install
+composer install
 ```
 Copiar Security.salt valor creado en config/app_local.php en la variable de entorno SECURITY_SALT
 ```
@@ -49,10 +57,7 @@ Ingresar a localhost
 
 Ejecutar los test
 
-```
- docker-compose exec web bash
-```
-
+(si se esta usando Docker ejecutar primero `docker-compose exec web bash`)
 ```
 npm test
 ```
@@ -61,7 +66,8 @@ npm test
 ./vendor/bin/phpunit tests
 ```
 
-## Otras opciones aparte de docker:
-* Usar xampp con php 7.4 y MySQL 5.7
-* Composer
-* Node v 18.x
+## Informacion adicional
+Ejecutar en modo desarrollo
+```
+npm run dev
+```

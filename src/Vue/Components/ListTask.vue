@@ -78,6 +78,7 @@ export default {
         this.$emit('taskChanged');
         this.$root.$emit('closeEditing');
       } catch (err) {
+        this.$emit('errorOccurred', err.response.data.message);
         console.log(err)
       }
     },
@@ -93,6 +94,7 @@ export default {
         if (err.response.data.errors.description) {
           this.error = Object.values(err.response.data.errors.description)[0];
         } else {
+          this.$emit('errorOccurred', err.response.data.message);
           console.err(err.response.data);
         }
       }
@@ -102,6 +104,7 @@ export default {
         await destroy(this.taskItem.id);
         this.$emit('taskChanged');
       } catch (err) {
+        this.$emit('errorOccurred', err.response.data.message);
         console.log(err);
       }
     }

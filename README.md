@@ -63,4 +63,5 @@ npm test
 
 ## Otras opciones aparte de docker:
 * Usar xampp con php 7.4 y MySQL 5.7
+* Composer
 * Node v 18.x

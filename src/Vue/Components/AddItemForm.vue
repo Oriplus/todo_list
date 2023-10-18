@@ -8,7 +8,8 @@
       </div>
     </div>
     <div>
-      <button type="button" id="btn-add" :class="[task.description ? 'btn-success' : 'btn-secondary', ' rounded-circle btn mb-3']" @click="addTask()">
+      <button type="button" id="btn-add"
+        :class="[task.description ? 'btn-success' : 'btn-secondary', ' rounded-circle btn mb-3']" title="Add" @click="addTask()">
         <i class="bi bi-plus"></i>
       </button>
     </div>

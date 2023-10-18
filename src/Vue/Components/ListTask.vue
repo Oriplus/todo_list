@@ -9,11 +9,11 @@
           {{ taskItem.description }}
         </label>
         <button v-if="!status.completed" type="button" class="btn btn-outline-primary btn-sm rounded-circle me-2 mb-0"
-          @click="startEditing">
+          title="Edit" @click="startEditing">
           <i class="bi bi-pencil"></i>
         </button>
-        <button type="button" class="btn btn-outline-danger btn-sm rounded-circle mb-0" @click="deleteTask"><i
-            class="bi bi-trash"></i></button>
+        <button type="button" class="btn btn-outline-danger btn-sm rounded-circle mb-0" title="Delete"
+          @click="deleteTask"><i class="bi bi-trash"></i></button>
       </div>
       <div v-else class="d-flex justify-content-between align-items-start py-2 edit-container">
         <div class="flex-fill me-2">
@@ -23,9 +23,9 @@
           </div>
         </div>
         <div class="py-1">
-          <button type="button" class="btn btn-outline-success btn-sm rounded-circle me-1" @click="confirmEdit"><i
-              class="bi bi-check"></i></button>
-          <button type="button" class="btn btn-outline-danger btn-sm rounded-circle" @click="cancelEdit"><i
+          <button type="button" class="btn btn-outline-success btn-sm rounded-circle me-1" title="Save"
+            @click="confirmEdit"><i class="bi bi-check"></i></button>
+          <button type="button" class="btn btn-outline-danger btn-sm rounded-circle" title="Cancel" @click="cancelEdit"><i
               class="bi bi-x"></i></button>
         </div>
       </div>
@@ -61,9 +61,9 @@ export default {
       this.task.description = this.taskItem.description;
     },
     resetEditingState() {
-        this.isEditing = false;
-        this.task.description = this.taskItem.description;
-        this.error = null;
+      this.isEditing = false;
+      this.task.description = this.taskItem.description;
+      this.error = null;
     },
     async updateStatus() {
       try {
@@ -78,6 +78,7 @@ export default {
         this.$emit('taskChanged');
         this.$root.$emit('closeEditing');
       } catch (err) {
+        this.$emit('errorOccurred', err.response.data.message);
         console.log(err)
       }
     },
@@ -93,6 +94,7 @@ export default {
         if (err.response.data.errors.description) {
           this.error = Object.values(err.response.data.errors.description)[0];
         } else {
+          this.$emit('errorOccurred', err.response.data.message);
           console.err(err.response.data);
         }
       }
@@ -102,6 +104,7 @@ export default {
         await destroy(this.taskItem.id);
         this.$emit('taskChanged');
       } catch (err) {
+        this.$emit('errorOccurred', err.response.data.message);
         console.log(err);
       }
     }

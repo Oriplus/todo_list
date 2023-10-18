@@ -34,7 +34,7 @@ $cakeDescription = 'Todo Tasks List';
     <?= $this->fetch('css') ?>
 </head>
 <body>
-    <div class="container clearfix">
+    <div class="">
         <?= $this->fetch('content') ?>
     </div>
     <footer>

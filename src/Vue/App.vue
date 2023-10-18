@@ -1,7 +1,7 @@
 <template>
   <div class="todo-list-container bg-container">
     <header class="sticky-top bg-light mb-3 px-2 rounded">
-      <h2 id="title" class="text-center">Tasks <i class="bi bi-list-check"></i></h2>
+      <h1 id="title" class="text-center">Tasks <i class="bi bi-list-check"></i></h1>
       <AddItemForm v-on:reloadTasks="getTasks()" />
     </header>
     <ListView :tasks="tasks" v-on:reloadTasks="getTasks()" />

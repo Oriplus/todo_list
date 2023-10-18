@@ -3,6 +3,11 @@
 Agrega, edita, elimina y cambia de estatus tareas!
 
 
+
+![image](https://github.com/Oriplus/todo_list/assets/42686893/931515a2-26d7-4b7f-8c79-62767dc6d906)
+
+
+
 ## Como ejecutar el proyecto
 
 ## Usando configuración local de docker del proyecto:
